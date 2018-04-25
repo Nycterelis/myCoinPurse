@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+    <!-- App css -->
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/icons.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/css/style.css" rel="stylesheet" type="text/css" />
+
+    <script src="~/assets/js/modernizr.min.js"></script>
+
+</head>
+<body>
+
+    <header id="topnav">
+        @Html.Partial("_LoginPartial")
+
+        <div class="navbar-custom">
+            <div class="container-fluid">
+                <div id="navigation">
+                    <!-- Navigation Menu-->
+                    <ul class="navigation-menu">
+
+                        <li class="has-submenu">
+                            <a href=@Url.Action("Dashboard", "Home")><i class="icon-speedometer"></i>Dashboard</a>
+                        </li>
+
+                        <li class="has-submenu">
+                            <a href="#"><i class="icon-layers"></i>My Account</a>
+                            <ul class="submenu">
+                                <li><a href="apps-calendar.html">Calendar</a></li>
+                                <li><a href=@Url.Action("Index", "Transactions")>Transactions</a></li>
+                                <li><a href=@Url.Action("Index", "PersonalAccounts")>Personal Accounts</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="has-submenu">
+                            <a href="#"><i class="icon-briefcase"></i>House Hold</a>
+                            <ul class="submenu megamenu">
+                                <li>
+                                    <ul>
+                                        <li><a href="ui-typography.html">Overview</a></li>
+                                        <li><a href="ui-cards.html">Transactions</a></li>
+                                        <li><a href="ui-buttons.html">Budgets</a></li>
+                                        @if (User.IsInRole("HeadOfHouse"))
+                                        {
+                                            <li><a href="ui-modals.html">Categories</a></li>
+                                        }
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- End navigation menu -->
+                </div> <!-- end #navigation -->
+            </div> <!-- end container -->
+        </div> <!-- end navbar-custom -->
+    </header>
+
+    <div class="wrapper">
+        <div class="container-fluid">
+
+            @*<div class="container body-content">*@
+            @RenderBody()
+        </div> <!-- end container -->
+    </div>
+    <!-- end wrapper -->
+    <hr />
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    &copy; @DateTime.Now.Year - Coin Purse Custom Ledger
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- jQuery  -->
+    <script src="~/assets/js/jquery.min.js"></script>
+    <script src="~/assets/js/popper.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/waves.js"></script>
+    <script src="~/assets/js/jquery.slimscroll.js"></script>
+
+    <!-- Flot chart -->
+    <script src="~/assets/plugins/flot-chart/jquery.flot.min.js"></script>
+    <script src="~/assets/plugins/flot-chart/jquery.flot.time.js"></script>
+    <script src="~/assets/plugins/flot-chart/jquery.flot.tooltip.min.js"></script>
+    <script src="~/assets/plugins/flot-chart/jquery.flot.resize.js"></script>
+    <script src="~/assets/plugins/flot-chart/jquery.flot.pie.js"></script>
+    <script src="~/assets/plugins/flot-chart/jquery.flot.crosshair.js"></script>
+    <script src="~/assets/plugins/flot-chart/curvedLines.js"></script>
+    <script src="~/assets/plugins/flot-chart/jquery.flot.axislabels.js"></script>
+
+    <!-- KNOB JS -->
+    <!--[if IE]>
+    <script type="text/javascript" src="../plugins/jquery-knob/excanvas.js"></script>
+    <![endif]-->
+    <script src="~/assets/plugins/jquery-knob/jquery.knob.js"></script>
+
+    <!-- Dashboard Init -->
+    <script src="~/assets/pages/jquery.dashboard.init.js"></script>
+
+    <!-- App js -->
+    <script src="~/assets/js/jquery.core.js"></script>
+    <script src="~/assets/js/jquery.app.js"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+</body>
+</html>
